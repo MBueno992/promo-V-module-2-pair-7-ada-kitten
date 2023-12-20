@@ -2,12 +2,15 @@
 
 const michis = document.querySelector('.js-list');
 
+
 const kittenImageOne = 'https://dev.adalab.es/gato-siames.webp';
 const kittenNameOne = 'Anastacio';
 const kittenDescOne = `Porte elegante, su patrón de color tan característico y sus ojos
 de un azul intenso, pero su historia se remonta a Asía al menos
 hace 500 años, donde tuvo su origen muy posiblemente.`;
-const kittenRaceOne = 'Siamés';
+const kittenRaceOne = "";
+
+
 
 const kittenOne =` <li class="card">
 <article>
@@ -23,6 +26,15 @@ const kittenOne =` <li class="card">
   </p>
 </article>
 </li>`;
+
+let html = '';
+
+if (kittenRaceOne === "") {
+  html = `Uy que despiste, no sabemos su raza`;
+} else {
+  html = kittenRaceOne;
+}
+
 
 const kittenImageTwo = 'https://dev.adalab.es/sphynx-gato.webp';
 const kittenNameTwo = 'Fiona';
@@ -65,3 +77,28 @@ ${kittenDescThree}
 </li>`;
 
 michis.innerHTML = kittenOne + kittenTwo + kittenThree;
+
+//ejercicio condicionales
+const input_search_desc = document.querySelector('.js_in_search_desc');
+const descrSearchText = input_search_desc.value;
+
+if( kittenDescOne.includes(descrSearchText) ) {
+  console.log(`${kittenNameOne} contiene la palabra ${descrSearchText}`)
+  }
+  
+  if( kittenDescTwo.includes(descrSearchText) ) {
+    console.log(`${kittenNameTwo} contiene la palabra ${descrSearchText}`)
+  }
+  
+  if( kittenDescThree.includes(descrSearchText) ) {
+    console.log(`${kittenNameThree} contiene la palabra ${descrSearchText}`)
+  }
+
+
+ /* let html = '';
+
+  if (kittenRaceOne === "") {
+    html = `Uy que despiste, no sabemos su raza`;
+  } else {
+    html = kittenRaceOne;
+  }*/

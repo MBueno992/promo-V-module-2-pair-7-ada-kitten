@@ -2,17 +2,14 @@
 
 const michis = document.querySelector('.js-list');
 
-
 const kittenImageOne = 'https://dev.adalab.es/gato-siames.webp';
 const kittenNameOne = 'Anastacio';
 const kittenDescOne = `Porte elegante, su patrón de color tan característico y sus ojos
 de un azul intenso, pero su historia se remonta a Asía al menos
 hace 500 años, donde tuvo su origen muy posiblemente.`;
-const kittenRaceOne = "";
+const kittenRaceOne = 'Siamés';
 
-
-
-const kittenOne =` <li class="card">
+const kittenOne = ` <li class="card">
 <article>
   <img
     class="card_img"
@@ -26,15 +23,6 @@ const kittenOne =` <li class="card">
   </p>
 </article>
 </li>`;
-
-let html = '';
-
-if (kittenRaceOne === "") {
-  html = `Uy que despiste, no sabemos su raza`;
-} else {
-  html = kittenRaceOne;
-}
-
 
 const kittenImageTwo = 'https://dev.adalab.es/sphynx-gato.webp';
 const kittenNameTwo = 'Fiona';
@@ -82,23 +70,64 @@ michis.innerHTML = kittenOne + kittenTwo + kittenThree;
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const descrSearchText = input_search_desc.value;
 
-if( kittenDescOne.includes(descrSearchText) ) {
-  console.log(`${kittenNameOne} contiene la palabra ${descrSearchText}`)
-  }
-  
-  if( kittenDescTwo.includes(descrSearchText) ) {
-    console.log(`${kittenNameTwo} contiene la palabra ${descrSearchText}`)
-  }
-  
-  if( kittenDescThree.includes(descrSearchText) ) {
-    console.log(`${kittenNameThree} contiene la palabra ${descrSearchText}`)
-  }
+if (kittenDescOne.includes(descrSearchText)) {
+  console.log(`${kittenNameOne} contiene la palabra ${descrSearchText}`);
+}
 
+if (kittenDescTwo.includes(descrSearchText)) {
+  console.log(`${kittenNameTwo} contiene la palabra ${descrSearchText}`);
+}
 
- /* let html = '';
+if (kittenDescThree.includes(descrSearchText)) {
+  console.log(`${kittenNameThree} contiene la palabra ${descrSearchText}`);
+}
+
+/*let html = '';
 
   if (kittenRaceOne === "") {
-    html = `Uy que despiste, no sabemos su raza`;
+    html.add = `Uy que despiste, no sabemos su raza`;
+
   } else {
     html = kittenRaceOne;
   }*/
+
+//Ejercicio 4. Eventos
+
+const formSection = document.querySelector('.js-new-form');
+const kittenButton = document.querySelector('.js-AdaKitten');
+formSection.classList.remove('collapsed')
+
+const addKitten = document.querySelector('.js-btn-add');
+const inputDesc = document.querySelector('.js-input-desc');
+const inputPhoto = document.querySelector('.js-input-photo');
+const inputName = document.querySelector('.js-input-name');
+const labelMessageError = document.querySelector('.js-label-error');
+const buttonCancel = document.querySelector('.js-cancel')
+
+//Este hace que al darle al + se abra o cierre el formulario
+kittenButton.addEventListener('click', ()=>{
+  formSection.classList.toggle('collapsed');
+})
+
+//Al rellenar los campos si te dejas alguno aparece un mensaje, cuando están todos sale otro
+addKitten.addEventListener('click', (event) => {
+  const valueDesc = inputDesc.value;
+  const valuePhoto = inputPhoto.value;
+  const valueName = inputName.value;
+  event.preventDefault();
+  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+    labelMessageError.innerHTML ='¡Uy! parece que has olvidado algo';
+
+  }else{ 
+    labelMessageError.innerHTML = 'Gatito añadido correctamente';
+   
+  }
+});
+
+//Al pulsar el botón cancelar se cierra el formulario, faltaría resetear los campos.
+buttonCancel.addEventListener('click', (cancel)=>{
+  cancel.preventDefault();
+  formSection.classList.add('collapsed');
+  
+});
+

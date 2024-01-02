@@ -101,28 +101,11 @@ const addKitten = document.querySelector('.js-btn-add');
 const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
+const inputRace = document.querySelector('.js-input-race');
 const labelMessageError = document.querySelector('.js-label-error');
 const buttonCancel = document.querySelector('.js-cancel')
 
-//Este hace que al darle al + se abra o cierre el formulario
-kittenButton.addEventListener('click', ()=>{
-  formSection.classList.toggle('collapsed');
-})
 
-//Al rellenar los campos si te dejas alguno aparece un mensaje, cuando están todos sale otro
-addKitten.addEventListener('click', (event) => {
-  const valueDesc = inputDesc.value;
-  const valuePhoto = inputPhoto.value;
-  const valueName = inputName.value;
-  event.preventDefault();
-  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
-    labelMessageError.innerHTML ='¡Uy! parece que has olvidado algo';
-
-  }else{ 
-    labelMessageError.innerHTML = 'Gatito añadido correctamente';
-   
-  }
-});
 
 //Al pulsar el botón cancelar se cierra el formulario, faltaría resetear los campos.
 buttonCancel.addEventListener('click', (cancel)=>{
@@ -131,3 +114,61 @@ buttonCancel.addEventListener('click', (cancel)=>{
   
 });
 
+//Ejercicio FORMULARIO: MOstrar/ocultar
+
+function showNewCatForm() {
+  formSection.classList.remove('collapsed');
+}
+function hideNewCatForm() {
+  formSection.classList.add('collapsed');
+}
+
+kittenButton.addEventListener('click', handleClickNewCatForm);
+
+function handleClickNewCatForm(event) {
+  event.preventDefault();
+  if (formSection.classList.contains('collapsed')) {
+    formSection.classList.remove('collapsed');
+  } else {
+    formSection.classList.add('collapsed');
+  }
+}
+
+//Ejercicio Adicionar nuevo gatito
+
+const valueDesc = inputDesc.value;
+const valuePhoto = inputPhoto.value;
+const valueName = inputName.value;
+const valueRace = inputRace.value;
+
+
+function renderKitten(url, desc, name, race) {
+  michis.innerHTML += (`<li class="card">
+  <article>
+    <img
+      class="card_img"
+      src= "${valuePhoto}"
+      alt="siames-cat"
+    />
+    <h3 class="card_title">${valueName.toUpperCase()}</h3>
+    <h4 class="card_race">${valueRace}</h4>
+    <p class="card_description">
+    ${valueDesc}
+    </p>
+  </article>
+  </li>`);
+}
+renderKitten(`${valuePhoto}, ${valueName}, ${valueRace}, ${valueDesc}`)
+
+
+function addNewKitten() {
+  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+    labelMessageError.innerHTML ='¡Uy! parece que has olvidado algo';
+
+  }else{ 
+    labelMessageError.innerHTML = 'Gatito añadido correctamente';
+
+    }
+  }
+
+addKitten.addEventListener('click', addNewKitten);

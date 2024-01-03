@@ -70,17 +70,17 @@ michis.innerHTML = kittenOne + kittenTwo + kittenThree;
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const descrSearchText = input_search_desc.value;
 
-if (kittenDescOne.includes(descrSearchText)) {
-  console.log(`${kittenNameOne} contiene la palabra ${descrSearchText}`);
-}
+// if (kittenDescOne.includes(descrSearchText)) {
+//   console.log(`${kittenNameOne} contiene la palabra ${descrSearchText}`);
+// }
 
-if (kittenDescTwo.includes(descrSearchText)) {
-  console.log(`${kittenNameTwo} contiene la palabra ${descrSearchText}`);
-}
+// if (kittenDescTwo.includes(descrSearchText)) {
+//   console.log(`${kittenNameTwo} contiene la palabra ${descrSearchText}`);
+// }
 
-if (kittenDescThree.includes(descrSearchText)) {
-  console.log(`${kittenNameThree} contiene la palabra ${descrSearchText}`);
-}
+// if (kittenDescThree.includes(descrSearchText)) {
+//   console.log(`${kittenNameThree} contiene la palabra ${descrSearchText}`);
+// }
 
 /*let html = '';
 
@@ -136,13 +136,14 @@ function handleClickNewCatForm(event) {
 
 //Ejercicio Adicionar nuevo gatito
 
-const valueDesc = inputDesc.value;
-const valuePhoto = inputPhoto.value;
-const valueName = inputName.value;
-const valueRace = inputRace.value;
 
 
-function renderKitten(url, desc, name, race) {
+
+function renderKitten() {
+  const valueDesc = inputDesc.value;
+  const valuePhoto = inputPhoto.value;
+  const valueName = inputName.value;
+  const valueRace = inputRace.value;
   michis.innerHTML += (`<li class="card">
   <article>
     <img
@@ -158,17 +159,46 @@ function renderKitten(url, desc, name, race) {
   </article>
   </li>`);
 }
-renderKitten(`${valuePhoto}, ${valueName}, ${valueRace}, ${valueDesc}`)
+// renderKitten(`${valuePhoto}, ${valueName}, ${valueRace}, ${valueDesc}`)
 
 
 function addNewKitten() {
+  const valueDesc = inputDesc.value;
+  const valuePhoto = inputPhoto.value;
+  const valueName = inputName.value;
+  const valueRace = inputRace.value;
   if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+
     labelMessageError.innerHTML ='¡Uy! parece que has olvidado algo';
 
   }else{ 
     labelMessageError.innerHTML = 'Gatito añadido correctamente';
-
+    renderKitten()
     }
   }
 
 addKitten.addEventListener('click', addNewKitten);
+
+
+// ejercicio filtrar 
+
+const buttonSearch = document.querySelector('.js-button-search');
+
+const filterKitten = (event) => {
+  event.preventDefault();
+  if (kittenDescOne.includes(descrSearchText)) {
+    michis.innerHTML += kittenOne;
+  }
+  if (kittenDescTwo.includes(descrSearchText)) {
+    michis.innerHTML += kittenTwo;
+    console.log(`${kittenNameTwo} contiene la palabra ${descrSearchText}`);
+  }
+  if (kittenDescThree.includes(descrSearchText)) {
+    michis.innerHTML += kittenThree;
+  }
+  else{
+    console.log('no hay gatitos con la palabra');
+  }
+};
+
+buttonSearch.addEventListener('click', filterKitten);
